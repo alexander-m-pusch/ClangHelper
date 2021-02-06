@@ -7,7 +7,7 @@ import phonemes.SoundChange;
 
 public class SoundShifter {
 	public static Word shiftSound(Word input, PhonemeClass shiftFrom, Phoneme shiftTo, PhonemeClass shiftBefore, int beforeOffset, PhonemeClass shiftAfter, int afterOffset, boolean affectStressed, boolean affectUnstressed) {
-		if(!affectStressed && !affectStressed) return input; //if it affects literally nothing, dont waste computer power on it!
+		if(!affectStressed && !affectUnstressed) return input; //if it affects literally nothing, dont waste computer power on it!
 		
 		Word newWord = new Word();
 		

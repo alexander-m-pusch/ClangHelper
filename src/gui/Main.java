@@ -46,7 +46,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Text;
 
 public class Main {
-	public static final String PROGRAM_VERSION = "0.9.0";
+	public static final String PROGRAM_VERSION = "0.9.1";
 	
 	private static Text text;
 	private static Text text_1;

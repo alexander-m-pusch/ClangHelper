@@ -848,6 +848,7 @@ public class Main {
 					Table dict = new Table("dictionary_" + dictionaryWrapper);
 					Table name = new Table("name");
 					name.setValue(dictionary.name());
+					dict.addSubTable(name);
 					int entryWrapper = 0;
 					for(DictionaryEntry entry : dictionary.getEntries()) {
 						Table dictEntry = new Table("entry_" + entryWrapper);
@@ -877,7 +878,6 @@ public class Main {
 						dictEntry.addSubTable(translation);
 						dictEntry.addSubTable(word);
 						
-						dict.addSubTable(name);
 						dict.addSubTable(dictEntry);
 						
 						entryWrapper++;
@@ -913,7 +913,8 @@ public class Main {
 				Table phonemeClasses = new Table("phonemeClasses");
 				
 				int indexPhonemeClass = 0;
-				for(PhonemeClass phonemeClass : PhonemeManager.getPhonemeClasses()) {
+				classLoop: for(PhonemeClass phonemeClass : PhonemeManager.getPhonemeClasses()) {
+					if(phonemeClass.name().equals("<may stay empty>")) continue classLoop;
 					Table phc = new Table("phonemeClass_" + indexPhonemeClass);
 					Table name = new Table("name");
 					name.setValue(phonemeClass.name());
@@ -1115,7 +1116,7 @@ public class Main {
 						phcl.addPhoneme(PhonemeManager.getPhoneme(phos.getSubTable("phoneme_" + phIndex).getValue()));
 					}
 					
-					PhonemeManager.addPhonemeClass(phcl);
+					if(!phcl.name().equals("<may stay empty>")) PhonemeManager.addPhonemeClass(phcl);
 				}
 				
 				for(int index = 0; index < soundChangesCount; index++) {
